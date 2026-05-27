@@ -1111,7 +1111,7 @@ h3{font-size:clamp(22px,3vw,30px)}
     <div class="trust-info">
       <h3>Radhitya Budiputranto</h3>
       <div class="trust-role">Founder BangunBrandmu · Group Head Marketing, Dayalima Group</div>
-      <p>15+ tahun pengalaman di dunia brand, marketing, dan business development. Pernah memegang posisi Head of Brand Marketing di industri sekuritas, Manager Brand & Tactical Marketing di Manulife, hingga kini sebagai Group Head Marketing di Daya Dimensi Indonesia. Pernah mendapat penghargaan dari SWA, Marketeers, dan Edith Cowan University. Pendekatan BangunBrandmu bukan template generik — tapi strategi yang disesuaikan dengan kondisi nyata bisnis kamu.</p>
+      <p>15+ tahun pengalaman di dunia brand, marketing, dan business development. Pernah memegang posisi Head of Brand Marketing di industri sekuritas, Manager Brand & Tactical Marketing di Manulife, hingga kini sebagai Group Head Marketing di Dayalima Group. Pernah mendapat penghargaan dari SWA, Marketeers, dan Edith Cowan University. Pendekatan BangunBrandmu bukan template generik — tapi strategi yang disesuaikan dengan kondisi nyata bisnis kamu.</p>
       <div class="trust-stats">
         <div class="trust-stat"><div class="num">15+</div><div class="lbl">Tahun</div></div>
         <div class="trust-stat"><div class="num">10+</div><div class="lbl">Brand</div></div>
@@ -1438,9 +1438,17 @@ function submitLead(){
 }
 
 function submitLeadData(data){
-  console.log('📋 Lead Data Ready for CRM/Zapier:',JSON.stringify(data,null,2));
-  // Integration placeholder:
-  // fetch('YOUR_WEBHOOK_URL',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  const WEBHOOK = 'https://script.google.com/macros/s/AKfycbzM2riwdad4Pv9adtqJokQju6qbnH6wKPJIskMsQhlcnEt_FtdGpLeQQJZQ98JzoFIC/exec';
+  fetch(WEBHOOK, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(data)
+  }).then(() => {
+    console.log('✅ Lead berhasil dikirim ke Google Sheets');
+  }).catch(err => {
+    console.error('❌ Gagal kirim lead:', err);
+  });
 }
 
 /* ═══════ RESULTS ═══════ */
