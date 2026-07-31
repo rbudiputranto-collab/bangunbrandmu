@@ -1,9 +1,13 @@
 # BangunBrandmu Website
 
-Repository untuk website utama [bangunbrandmu.id](https://bangunbrandmu.id).
+Repository khusus website umbrella brand
+[bangunbrandmu.id](https://bangunbrandmu.id).
 
 Website saat ini berbentuk static single-page website. HTML, CSS, JavaScript,
 quiz, dan sebagian besar aset visual berada dalam satu file `index.html`.
+
+Repository ini hanya menyimpan aset website BangunBrandmu. Project klien
+berada di luar repository, pada folder sejajar `../Projects/`.
 
 ## File yang dicatat dalam Git
 
@@ -17,9 +21,6 @@ quiz, dan sebagian besar aset visual berada dalam satu file `index.html`.
 | `ChatGPT Image May 27, 2026, 09_46_40 AM.png` | Source visual alternatif |
 | `README.md` | Dokumentasi website dan alur perubahan |
 | `.gitignore` | Mencegah dokumen lokal/confidential ikut masuk repository |
-
-Folder `Santi Story/` sengaja tidak dicatat dalam Git karena berisi dokumen
-klien dan materi internal.
 
 ## Struktur Website
 
@@ -147,4 +148,3 @@ Prioritas berikutnya berdasarkan audit 31 Juli 2026:
 5. Tambahkan `robots.txt` dan `sitemap.xml`.
 6. Tambahkan `rel="noopener noreferrer"` pada link yang membuka tab baru.
 7. Pertimbangkan pemisahan CSS, JavaScript, dan assets saat website berkembang.
-

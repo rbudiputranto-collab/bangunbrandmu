@@ -1,11 +1,7 @@
 .DS_Store
 
-# Dokumen klien bersifat confidential dan tidak boleh masuk repository website.
-Santi Story/
-
 # File lokal/editor.
 .idea/
 .vscode/
 *.swp
 *.tmp
-
