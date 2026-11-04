@@ -14,6 +14,7 @@ berada di luar repository, pada folder sejajar `../Projects/`.
 | File | Fungsi |
 | --- | --- |
 | `index.html` | Website utama, styling, Brand & Marketing Audit, hasil audit, dan CTA |
+| `live.html` | Landing page BangunBrandmu Live, seri event, host, funnel, dan priority-list form |
 | `BangunBrandmu_logo_premium.png` | Master logo BangunBrandmu |
 | `ChatGPT Image May 27, 2026, 02_41_15 AM.png` | Source visual/logo alternatif |
 | `ChatGPT Image May 27, 2026, 02_48_35 AM.png` | Source visual alternatif |
@@ -26,19 +27,29 @@ berada di luar repository, pada folder sejajar `../Projects/`.
 
 Urutan section pada `index.html`:
 
-1. Navbar dan hero
-2. Masalah yang dihadapi target market
-3. Strategic reframe
-4. Penjelasan Brand & Marketing Audit
-5. Quiz audit 18 pertanyaan
-6. Lead capture dan hasil audit
-7. Layanan BangunBrandmu
-8. Target client
-9. Cara kerja
-10. Trust/profile
-11. Skenario layanan
-12. FAQ
-13. Final CTA dan WhatsApp
+1. Navbar dan hero dengan CTA utama menuju BangunBrandmu Live
+2. BangunBrandmu Live dan sesi perdana
+3. Masalah yang dihadapi target market
+4. Strategic reframe
+5. Penjelasan Brand & Marketing Audit
+6. Quiz audit 18 pertanyaan
+7. Lead capture dan hasil audit
+8. Layanan BangunBrandmu
+9. Target client
+10. Cara kerja
+11. Trust/profile
+12. Skenario layanan
+13. FAQ
+14. Final CTA dan WhatsApp
+
+`live.html` menjadi landing page event dan memuat:
+
+1. Sesi BangunBrandmu Live berikutnya
+2. Format sesi kerja 60 menit
+3. Tiga topik seri pertama
+4. Jalur Live → Audit → Growth Check → Implementasi
+5. Profil Radhit sebagai host
+6. Priority-list form
 
 ## Lead Capture
 
@@ -54,6 +65,9 @@ Setelah menyelesaikan 18 pertanyaan, pengunjung diminta mengisi:
 
 Data dan hasil audit dikirim ke Google Apps Script melalui fungsi
 `submitLeadData()` di dalam `index.html`.
+
+Form priority list pada `live.html` menggunakan webhook yang sama dan menambahkan
+`source: BangunBrandmu Live Priority List` agar sumber lead dapat dibedakan.
 
 > Jangan mengganti URL webhook tanpa memastikan Apps Script dan Google Sheet
 > tujuan sudah benar. Hindari memasukkan password, API key, atau credential
@@ -80,6 +94,8 @@ website online.
 
 - Periksa tampilan desktop dan mobile.
 - Jalankan seluruh 18 pertanyaan audit.
+- Periksa navigasi dari homepage menuju `live.html`.
+- Uji form priority list dengan data test yang jelas dan cek Google Sheet.
 - Pastikan tombol kembali dan lanjut bekerja.
 - Pastikan hasil score, strengths, priorities, dan rekomendasi tampil.
 - Uji lead menggunakan data test yang jelas, lalu cek Google Sheet.
