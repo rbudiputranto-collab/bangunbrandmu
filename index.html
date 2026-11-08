@@ -1017,7 +1017,7 @@ h3{font-size:clamp(22px,3vw,30px)}
       <option value=">500jt">> Rp 500 Juta</option>
     </select>
   </div>
-  <button class="btn btn-amber" onclick="submitLead()">Lihat Hasil Audit</button>
+  <button class="btn btn-amber" id="submitAuditLead" onclick="submitLead()">Lihat Hasil Audit</button>
   <p class="lead-note">Data digunakan untuk menghitung hasil audit dan menghubungi kamu jika kamu memilih konsultasi.</p>
 </div>
 </div>
@@ -1522,7 +1522,7 @@ function scrollToQuiz(e){
 }
 
 /* ═══════ LEAD CAPTURE ═══════ */
-function submitLead(){
+async function submitLead(){
   const name=document.getElementById('leadName').value.trim();
   const biz=document.getElementById('leadBiz').value.trim();
   const ind=document.getElementById('leadIndustry').value.trim();
@@ -1530,6 +1530,7 @@ function submitLead(){
   const email=document.getElementById('leadEmail').value.trim();
   if(!name||!biz||!ind||!wa||!email){alert('Mohon lengkapi semua field yang wajib diisi.');return}
   const data={
+    source:'website-audit',
     name,businessName:biz,industry:ind,whatsapp:wa,email,
     social:document.getElementById('leadSocial').value.trim(),
     revenue:document.getElementById('leadRevenue').value,
@@ -1537,23 +1538,32 @@ function submitLead(){
     totalScore:answers.reduce((s,a,i)=>s+questions[i].opts[a].s,0),
     timestamp:new Date().toISOString()
   };
-  submitLeadData(data);
-  document.getElementById('leadOverlay').classList.remove('show');
-  document.body.style.overflow='';
-  showResult(data);
+  const button=document.getElementById('submitAuditLead');
+  button.disabled=true;
+  button.textContent='Mengirim...';
+  try{
+    await submitLeadData(data);
+    sessionStorage.setItem('bbmAuditResult',JSON.stringify({
+      totalScore:data.totalScore,
+      answers:data.answers.map(answer=>({category:answer.category,score:answer.score}))
+    }));
+    sessionStorage.setItem('bbmConversionAudit','1');
+    window.location.href='/thank-you/audit/';
+  }catch(error){
+    alert('Data audit belum terkirim. Silakan coba lagi.');
+    button.disabled=false;
+    button.textContent='Lihat Hasil Audit';
+  }
 }
 
 function submitLeadData(data){
   const WEBHOOK = 'https://script.google.com/macros/s/AKfycbzM2riwdad4Pv9adtqJokQju6qbnH6wKPJIskMsQhlcnEt_FtdGpLeQQJZQ98JzoFIC/exec';
-  fetch(WEBHOOK, {
+  return fetch(WEBHOOK, {
     method: 'POST',
     mode: 'no-cors',
+    keepalive: true,
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify(data)
-  }).then(() => {
-    console.log('Lead berhasil dikirim ke Google Sheets');
-  }).catch(err => {
-    console.error('Gagal kirim lead:', err);
   });
 }
 
